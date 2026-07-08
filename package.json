@@ -1,0 +1,23 @@
+{
+  "name": "dropship-trend-agent",
+  "version": "1.0.0",
+  "description": "Daily Shopify dropshipping product research assistant powered by the Gemini API",
+  "private": true,
+  "scripts": {
+    "dev": "parcel src/index.html --open",
+    "build": "parcel build src/index.html --dist-dir dist --public-url ./",
+    "analyze": "node scripts/analyze.js",
+    "analyze:us": "node scripts/analyze.js US",
+    "analyze:gb": "node scripts/analyze.js GB",
+    "analyze:au": "node scripts/analyze.js AU",
+    "serve": "npx serve dist"
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.13.3",
+    "serve": "^14.2.4"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}

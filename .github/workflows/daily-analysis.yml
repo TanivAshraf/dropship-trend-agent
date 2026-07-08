@@ -1,0 +1,57 @@
+name: Daily Dropship Trend Analysis
+
+on:
+  schedule:
+    # Runs every day at 06:00 UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allows manual trigger from the GitHub UI
+
+permissions:
+  contents: write  # Required to commit updated data/today.json back to the repo
+  pages: write     # Required for GitHub Pages deployment
+  id-token: write  # Required for OIDC-based Pages deployment
+
+jobs:
+  analyze-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Gemini trend analysis
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npm run analyze
+
+      - name: Commit updated product data
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          git add data/today.json
+          git diff --staged --quiet || git commit -m "chore: update daily product trends [$(date -u '+%Y-%m-%d')]"
+          git push
+
+      - name: Build static frontend
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

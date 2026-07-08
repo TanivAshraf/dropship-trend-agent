@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Daily AI-powered Shopify dropshipping product research — top 5 trending products updated every morning by Gemini." />
+  <meta property="og:title" content="Dropship Trend Agent — Daily Top 5 Products" />
+  <meta property="og:description" content="AI-curated dropshipping product picks, refreshed daily." />
+  <title>Dropship Trend Agent — Daily Top 5</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────────── -->
+  <header>
+    <div class="container header-inner">
+      <a class="logo" href="/" id="logo-link" aria-label="Dropship Trend Agent home">
+        <span class="logo-icon">🛒</span>
+        Dropship Trend Agent
+      </a>
+      <span class="header-meta">
+        <span class="live-dot" aria-hidden="true"></span>
+        Updated daily via Gemini AI
+      </span>
+    </div>
+  </header>
+
+  <!-- ── Hero ───────────────────────────────────────────────────── -->
+  <main>
+    <div class="container">
+      <section class="hero" aria-labelledby="hero-heading">
+        <p class="hero-eyebrow">🤖 AI-Powered Research</p>
+        <h1 id="hero-heading">
+          Your Daily <span>Top 5 Products</span><br />to Dropship on Shopify
+        </h1>
+        <p class="hero-sub">
+          Every morning our Gemini-powered agent scans e-commerce trends and
+          surfaces the five highest-opportunity products — so you can start
+          selling before the competition does.
+        </p>
+        <span class="date-badge" id="report-date" aria-live="polite">Loading report…</span>
+      </section>
+
+      <!-- ── Stats Row ─────────────────────────────────────────── -->
+      <div class="stats-row" role="region" aria-label="Summary statistics">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-products">5</div>
+          <div class="stat-label">Products Ranked</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-avg-margin">—</div>
+          <div class="stat-label">Avg. Margin</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-top-score">—</div>
+          <div class="stat-label">Top Trend Score</div>
+        </div>
+      </div>
+
+      <!-- ── Product Grid ──────────────────────────────────────── -->
+      <p class="section-title">Today's Picks</p>
+      <section id="products-grid" aria-label="Daily product recommendations" aria-live="polite">
+        <!-- Cards are injected here by app.js -->
+        <div class="loading-state" id="loading-state" role="status" aria-label="Loading products">
+          <div class="spinner" aria-hidden="true"></div>
+          <p>Fetching today's top products…</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <p>
+        Built with ❤️ using <a href="https://ai.google.dev/" rel="noopener">Gemini AI</a> &amp;
+        <a href="https://parceljs.org/" rel="noopener">Parcel</a> ·
+        Data refreshed daily via GitHub Actions ·
+        <a href="https://github.com/" rel="noopener">View Source</a>
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
