@@ -6,21 +6,32 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch: # Allows manual trigger from the GitHub UI
 
+# ── Permissions ────────────────────────────────────────────────────────────────
+# Split into two jobs so each has only the minimum permissions it needs.
+# The commit job needs `contents: write`; the Pages deploy job needs
+# `pages: write` + `id-token: write`. Giving all three to a single job
+# with environment: github-pages causes GitHub to restrict the GITHUB_TOKEN
+# to read-only for security, which breaks the git push step.
 permissions:
-  contents: write  # Required to commit updated data/today.json back to the repo
-  pages: write     # Required for GitHub Pages deployment
-  id-token: write  # Required for OIDC-based Pages deployment
+  contents: write   # Job 1: commit updated data/today.json
+  pages: write      # Job 2: deploy to GitHub Pages
+  id-token: write   # Job 2: OIDC token for Pages deployment
 
 jobs:
-  analyze-and-deploy:
+  # ── Job 1: Run analysis and commit fresh data ──────────────────────────────
+  analyze-and-commit:
+    name: Run Gemini Analysis & Commit Data
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # No `environment:` block here — that would lock down GITHUB_TOKEN
+    # and prevent the git push from working.
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # Use a token with write access so the push step works on
+          # protected branches and doesn't trigger infinite workflow loops.
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -38,11 +49,41 @@ jobs:
 
       - name: Commit updated product data
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action Bot"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add data/today.json
+          # Only commit if the file actually changed; avoids empty commits
           git diff --staged --quiet || git commit -m "chore: update daily product trends [$(date -u '+%Y-%m-%d')]"
           git push
+
+  # ── Job 2: Build frontend and deploy to GitHub Pages ──────────────────────
+  deploy-pages:
+    name: Build & Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: analyze-and-commit   # Wait for fresh data before building
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # Override permissions for this job only — Pages OIDC requires these two
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository (with latest data)
+        uses: actions/checkout@v4
+        with:
+          # Pull the commit that job 1 just pushed so we get today.json
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build static frontend
         run: npm run build

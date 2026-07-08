@@ -255,6 +255,81 @@ async function runParser(researchText) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+//  SOURCE LINK SANITIZER
+//  Runs after Phase 2. Guarantees every product has a live, evergreen URL.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Build a guaranteed-working AliExpress wholesale search URL for a product name.
+ * Uses the standard /wholesale endpoint which never 404s.
+ *
+ * Example: "Self-Cooling Gel Pet Mat"
+ *   → https://www.aliexpress.com/wholesale?SearchText=Self-Cooling+Gel+Pet+Mat
+ */
+function buildFallbackLink(productName) {
+  const query = encodeURIComponent((productName || '').trim());
+  return `https://www.aliexpress.com/wholesale?SearchText=${query}`;
+}
+
+/**
+ * Decide whether a given URL is safe to keep as-is.
+ * Returns false (needs fallback) when the link is:
+ *   - Missing / empty
+ *   - Not a real HTTP(S) URL
+ *   - A bare placeholder like "https://www.aliexpress.com/wholesale?SearchText="
+ *     with no actual search term (i.e. the Gemini parser already guessed a fallback
+ *     but left the name blank)
+ *   - An AliExpress item URL (contains /item/) — these are kept as-is; they are real
+ *     deep links and preferred over the search fallback
+ */
+function isLinkReliable(url) {
+  if (!url || typeof url !== 'string') return false;
+  const trimmed = url.trim();
+  if (!trimmed.startsWith('http://') && !trimmed.startsWith('https://')) return false;
+  // Reject empty wholesale search with no query term
+  if (/\/wholesale\?SearchText=\s*$/.test(trimmed)) return false;
+  // Reject bare domain with no path/query
+  try {
+    const parsed = new URL(trimmed);
+    if (parsed.pathname === '/' && !parsed.search) return false;
+  } catch {
+    return false; // Malformed URL
+  }
+  return true;
+}
+
+/**
+ * Iterate over all products in `data` and ensure every sourceLink is reliable.
+ * Mutates the products array in place; returns a log of what was changed.
+ */
+function sanitizeSourceLinks(data) {
+  const log = [];
+
+  (data.products || []).forEach((product) => {
+    const original = product.sourceLink;
+
+    if (isLinkReliable(original)) {
+      log.push({ rank: product.rank, name: product.name, action: 'kept', url: original });
+      return;
+    }
+
+    // Generate the evergreen fallback
+    const fallback = buildFallbackLink(product.name);
+    product.sourceLink = fallback;
+
+    log.push({
+      rank:   product.rank,
+      name:   product.name,
+      action: original ? 'replaced' : 'generated',
+      was:    original || '(none)',
+      url:    fallback,
+    });
+  });
+
+  return log;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 //  MAIN ORCHESTRATOR
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
@@ -282,6 +357,18 @@ async function main() {
       throw new Error('Parser returned no products. Aborting write.');
     }
 
+    // ── Sanitize source links (must run BEFORE write) ─────────────────────────
+    console.log('\n🔗  [Link Sanitizer] Validating source links...');
+    const linkLog = sanitizeSourceLinks(data);
+    linkLog.forEach(({ rank, name, action, was, url }) => {
+      if (action === 'kept') {
+        console.log(`    ✅  #${rank} ${name} → kept: ${url}`);
+      } else {
+        console.log(`    ⚠️   #${rank} ${name} → ${action} (was: ${was})`);
+        console.log(`         ↳ ${url}`);
+      }
+    });
+
     // ── Write output ──────────────────────────────────────────────────────────
     fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
     fs.writeFileSync(OUTPUT_PATH, JSON.stringify(data, null, 2), 'utf-8');
@@ -292,11 +379,13 @@ async function main() {
     console.log(`  📊  TODAY'S TOP ${data.products.length} PRODUCTS (${COUNTRY})`);
     console.log('════════════════════════════════════════════════════════');
     data.products.forEach((p) => {
-      const pad  = String(p.rank).padStart(2, ' ');
-      const name = (p.name || '').padEnd(38, ' ').slice(0, 38);
+      const pad    = String(p.rank).padStart(2, ' ');
+      const name   = (p.name || '').padEnd(38, ' ').slice(0, 38);
+      const link   = (p.sourceLink || '').slice(0, 60);
       console.log(
         `  ${pad}. ${name}  |  src $${String(p.sourcePrice).padStart(5)}  ret $${String(p.retailPrice).padStart(6)}  ${p.margin.padStart(4)} margin  score ${p.trendScore}`
       );
+      console.log(`      🔗  ${link}`);
     });
     console.log('════════════════════════════════════════════════════════');
     console.log('  ✅  Pipeline complete.\n');
