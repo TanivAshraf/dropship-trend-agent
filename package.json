@@ -4,8 +4,8 @@
   "description": "Daily Shopify dropshipping product research assistant powered by the Gemini API",
   "private": true,
   "scripts": {
-    "dev": "parcel src/index.html --open",
-    "build": "parcel build src/index.html --dist-dir dist --public-url ./",
+    "dev": "parcel src/*.html --open",
+    "build": "parcel build src/*.html --dist-dir dist --public-url ./",
     "analyze": "node scripts/analyze.js",
     "analyze:us": "node scripts/analyze.js US",
     "analyze:gb": "node scripts/analyze.js GB",
