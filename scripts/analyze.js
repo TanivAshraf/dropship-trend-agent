@@ -194,7 +194,7 @@ async function runParser(researchText) {
         maxItems: 5,
         items: {
           type: Type.OBJECT,
-          required: ['rank', 'name', 'niche', 'sourcePrice', 'retailPrice', 'margin', 'marginVal', 'trendScore', 'supplierHint', 'reasonToSell', 'tags', 'sourceLink'],
+          required: ['rank', 'name', 'niche', 'sourcePrice', 'retailPrice', 'margin', 'marginVal', 'trendScore', 'supplierHint', 'reasonToSell', 'tags', 'sourceLink', 'imageUrl'],
           properties: {
             rank: {
               type: Type.INTEGER,
@@ -251,6 +251,10 @@ async function runParser(researchText) {
               type: Type.STRING,
               description: 'Real URL to the AliExpress/CJ listing or a TikTok/news article proving the trend',
             },
+            imageUrl: {
+              type: Type.STRING,
+              description: 'A high-quality, direct public product image or photo URL found during Phase 1 research. Must be a direct link ending in .jpg, .jpeg, .png, or .webp — not a search page or HTML page.',
+            },
           },
         },
       },
@@ -269,6 +273,7 @@ async function runParser(researchText) {
     `- margin = round((marginVal / retailPrice) * 100) + "%"`,
     `- trendScore: synthesise from the trend signals described (viral = 85-100, growing = 60-84, stable = 40-59)`,
     `- sourceLink: use the most relevant real URL found in the research; if none found, use "https://www.aliexpress.com/wholesale?SearchText=" + encodeURIComponent(productName)`,
+    `- imageUrl: extract a direct, publicly accessible product image URL from the research (must end in .jpg, .jpeg, .png, or .webp). Look for AliExpress product images, supplier listing photos, or clean product shots from review sites. If no direct image URL was found in the research, return an empty string ""`,
     `- Output ONLY the JSON object. No markdown fences, no commentary.`,
     ``,
     `=== RESEARCH BRIEF ===`,
@@ -398,6 +403,112 @@ function sanitizeSourceLinks(data) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+//  ARCHIVE HELPERS — Dual history system for backtesting
+// ─────────────────────────────────────────────────────────────────────────────
+
+const HISTORY_PATH = path.resolve(__dirname, '../data/history.json');
+const CSV_PATH     = path.resolve(__dirname, '../data/archive.csv');
+
+const CSV_HEADERS = 'Date,Rank,Name,Niche,SourcePrice,RetailPrice,MarginPercent,MarginVal,TrendScore,SupplierHint,Tags,SourceLink,ImageUrl';
+
+/**
+ * Wrap a single CSV field value: always quote strings, escape internal
+ * double-quotes by doubling them (RFC 4180 compliant).
+ */
+function csvField(value) {
+  const str = (value == null ? '' : String(value)).replace(/"/g, '""');
+  return `"${str}"`;
+}
+
+/**
+ * Update data/history.json
+ *
+ * Loads the existing array (or initialises []), strips any entries whose
+ * `date` matches TODAY (idempotent re-runs), stamps each product with
+ * TODAY's date, appends, then writes back.
+ */
+function updateJsonHistory(products) {
+  let history = [];
+
+  if (fs.existsSync(HISTORY_PATH)) {
+    try {
+      history = JSON.parse(fs.readFileSync(HISTORY_PATH, 'utf-8'));
+      if (!Array.isArray(history)) history = [];
+    } catch {
+      console.warn('⚠️   [Archive] history.json was corrupt — reinitialising.');
+      history = [];
+    }
+  }
+
+  // Remove stale entries for today (handles re-runs on the same day)
+  const before = history.length;
+  history = history.filter((entry) => entry.date !== TODAY);
+  if (history.length < before) {
+    console.log(`    🗑️   Removed ${before - history.length} stale entries for ${TODAY} from history.json`);
+  }
+
+  // Stamp each product with today's date and append
+  const stamped = products.map((p) => ({ date: TODAY, ...p }));
+  history.push(...stamped);
+
+  fs.writeFileSync(HISTORY_PATH, JSON.stringify(history, null, 2), 'utf-8');
+  console.log(`    ✅  history.json — ${history.length} total entries (added ${stamped.length} for ${TODAY})`);
+}
+
+/**
+ * Update data/archive.csv
+ *
+ * If the file doesn't exist, creates it with CSV_HEADERS.
+ * Reads existing content, strips any rows that start with TODAY's date
+ * (idempotent), appends 5 new rows, writes back.
+ * All fields are double-quoted per RFC 4180 to handle commas in names/tags.
+ */
+function updateCsvArchive(products) {
+  let lines;
+
+  if (fs.existsSync(CSV_PATH)) {
+    const raw = fs.readFileSync(CSV_PATH, 'utf-8').trimEnd();
+    lines = raw.split('\n');
+    // Ensure header is present (guard against an empty file)
+    if (lines[0] !== CSV_HEADERS) lines.unshift(CSV_HEADERS);
+  } else {
+    lines = [CSV_HEADERS];
+  }
+
+  // Strip rows that belong to today (idempotent re-runs)
+  // Each row's first field is a quoted date: "YYYY-MM-DD"
+  const todayQuoted = csvField(TODAY);
+  const before = lines.length;
+  lines = lines.filter((line, i) => i === 0 || !line.startsWith(todayQuoted));
+  if (lines.length < before) {
+    console.log(`    🗑️   Removed ${before - lines.length} stale rows for ${TODAY} from archive.csv`);
+  }
+
+  // Append new rows
+  const newRows = products.map((p) =>
+    [
+      csvField(TODAY),
+      csvField(p.rank),
+      csvField(p.name),
+      csvField(p.niche),
+      csvField(p.sourcePrice),
+      csvField(p.retailPrice),
+      csvField(p.margin),
+      csvField(p.marginVal),
+      csvField(p.trendScore),
+      csvField(p.supplierHint),
+      csvField((p.tags || []).join(', ')),
+      csvField(p.sourceLink),
+      csvField(p.imageUrl || ''),
+    ].join(',')
+  );
+  lines.push(...newRows);
+
+  fs.writeFileSync(CSV_PATH, lines.join('\n') + '\n', 'utf-8');
+  console.log(`    ✅  archive.csv  — ${lines.length - 1} total data rows (added ${newRows.length} for ${TODAY})`);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 //  MAIN ORCHESTRATOR
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
@@ -437,8 +548,13 @@ async function main() {
       }
     });
 
-    // ── Write output ──────────────────────────────────────────────────────────
+    // ── Archive (history.json + archive.csv) ──────────────────────────────────
+    console.log('\n🗂️   [Archive] Updating history files...');
     fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
+    updateJsonHistory(data.products);
+    updateCsvArchive(data.products);
+
+    // ── Write today.json ──────────────────────────────────────────────────────
     fs.writeFileSync(OUTPUT_PATH, JSON.stringify(data, null, 2), 'utf-8');
     console.log(`\n💾  Written to: ${OUTPUT_PATH}`);
 

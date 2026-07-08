@@ -78,34 +78,47 @@ function renderCard(container, product, index) {
   card.setAttribute('aria-label', `Rank ${product.rank}: ${product.name}`);
 
   card.innerHTML = `
-    <div class="card-rank ${isTop ? 'top' : ''}" aria-hidden="true">${String(product.rank).padStart(2, '0')}</div>
-
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-name">${escHtml(product.name)}</span>
-        <span class="niche-badge">${escHtml(product.niche)}</span>
-      </div>
-      ${reason ? `<p class="card-reason">${escHtml(reason)}</p>` : ''}
-      ${pricingHtml}
-      <div class="card-tags">${tagsHtml}</div>
-      ${linkHtml}
+    <div class="card-image-wrap">
+      <img
+        class="card-image"
+        src="${escHtml(product.imageUrl || '')}"
+        alt="${escHtml(product.name)}"
+        loading="lazy"
+        onload="this.classList.add('loaded')"
+        onerror="this.onerror=null; this.src='https://images.unsplash.com/featured/600x400/?' + encodeURIComponent(this.alt);"
+      />
     </div>
 
-    <div class="card-meta">
-      <span class="margin-pill" title="Gross profit margin">📈 ${escHtml(marginLabel)}</span>
-      <div class="trend-score-wrap">
-        <div class="trend-label">Trend Score</div>
-        <div class="trend-score">${product.trendScore}</div>
-        <div class="trend-bar"
-             role="progressbar"
-             aria-valuenow="${product.trendScore}"
-             aria-valuemin="0"
-             aria-valuemax="100"
-             aria-label="Trend score ${product.trendScore} out of 100">
-          <div class="trend-fill" style="width:0%" data-target="${product.trendScore}%"></div>
+    <div class="card-content">
+      <div class="card-rank ${isTop ? 'top' : ''}" aria-hidden="true">${String(product.rank).padStart(2, '0')}</div>
+
+      <div class="card-body">
+        <div class="card-header">
+          <span class="card-name">${escHtml(product.name)}</span>
+          <span class="niche-badge">${escHtml(product.niche)}</span>
         </div>
+        ${reason ? `<p class="card-reason">${escHtml(reason)}</p>` : ''}
+        ${pricingHtml}
+        <div class="card-tags">${tagsHtml}</div>
+        ${linkHtml}
       </div>
-      <p class="supplier-hint">🏭 <strong>${escHtml(product.supplierHint || '')}</strong></p>
+
+      <div class="card-meta">
+        <span class="margin-pill" title="Gross profit margin">📈 ${escHtml(marginLabel)}</span>
+        <div class="trend-score-wrap">
+          <div class="trend-label">Trend Score</div>
+          <div class="trend-score">${product.trendScore}</div>
+          <div class="trend-bar"
+               role="progressbar"
+               aria-valuenow="${product.trendScore}"
+               aria-valuemin="0"
+               aria-valuemax="100"
+               aria-label="Trend score ${product.trendScore} out of 100">
+            <div class="trend-fill" style="width:0%" data-target="${product.trendScore}%"></div>
+          </div>
+        </div>
+        <p class="supplier-hint">🏭 <strong>${escHtml(product.supplierHint || '')}</strong></p>
+      </div>
     </div>
   `;
 
@@ -119,6 +132,7 @@ function renderCard(container, product, index) {
     }, delay + 50);
   });
 }
+
 
 // ─── Main Initializer ─────────────────────────────────────────────────────────
 
