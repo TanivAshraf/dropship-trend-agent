@@ -39,19 +39,33 @@
         </p>
       </section>
 
-      <!-- ── Search ─────────────────────────────────────────────── -->
-      <div class="search-wrap" role="search">
-        <span class="search-icon" aria-hidden="true">🔍</span>
-        <input
-          type="text"
-          id="archive-search"
-          class="archive-search"
-          placeholder="Search past winning products, niches, or tags…"
-          autocomplete="off"
-          spellcheck="false"
-          aria-label="Search archive"
-        />
-        <span class="search-count" id="search-count" aria-live="polite"></span>
+      <!-- ── Search & Filter Controls ───────────────────────────── -->
+      <div class="controls-bar">
+        <div class="search-wrap" role="search">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input
+            type="text"
+            id="archive-search"
+            class="archive-search"
+            placeholder="Search past winning products, niches, or tags…"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Search archive"
+          />
+          <span class="search-count" id="search-count" aria-live="polite"></span>
+        </div>
+
+        <div class="sort-wrap">
+          <label for="archive-sort" class="sort-label">Sort by:</label>
+          <select id="archive-sort" class="archive-sort" aria-label="Sort products">
+            <option value="date-desc">📅 Newest Picks First</option>
+            <option value="date-asc">📅 Oldest Picks First</option>
+            <option value="revenue-desc">💰 Highest Revenue</option>
+            <option value="margin-desc">📈 Highest Margin %</option>
+            <option value="price-desc">💵 Product Price</option>
+            <option value="demand-desc">🔥 Highest Demand / Buying Rate</option>
+          </select>
+        </div>
       </div>
 
       <!-- ── Archive Timeline ───────────────────────────────────── -->

@@ -194,7 +194,7 @@ async function runParser(researchText) {
         maxItems: 5,
         items: {
           type: Type.OBJECT,
-          required: ['rank', 'name', 'niche', 'sourcePrice', 'retailPrice', 'margin', 'marginVal', 'trendScore', 'supplierHint', 'reasonToSell', 'tags', 'sourceLink', 'imageUrl'],
+          required: ['rank', 'name', 'niche', 'sourcePrice', 'retailPrice', 'margin', 'marginVal', 'trendScore', 'supplierHint', 'reasonToSell', 'tags', 'sourceLink', 'imageUrl', 'trendTrigger'],
           properties: {
             rank: {
               type: Type.INTEGER,
@@ -255,6 +255,10 @@ async function runParser(researchText) {
               type: Type.STRING,
               description: 'A high-quality, direct public product image or photo URL found during Phase 1 research. Must be a direct link ending in .jpg, .jpeg, .png, or .webp — not a search page or HTML page.',
             },
+            trendTrigger: {
+              type: Type.STRING,
+              description: 'A detailed, context-rich explanation of why this product is trending. Connect it directly to real-world drivers such as Google Trends spikes, K-pop or social media aesthetics, upcoming seasonal holidays, global sports events, or TikTok viral hashtags.',
+            },
           },
         },
       },
@@ -274,6 +278,7 @@ async function runParser(researchText) {
     `- trendScore: synthesise from the trend signals described (viral = 85-100, growing = 60-84, stable = 40-59)`,
     `- sourceLink: use the most relevant real URL found in the research; if none found, use "https://www.aliexpress.com/wholesale?SearchText=" + encodeURIComponent(productName)`,
     `- imageUrl: extract a direct, publicly accessible product image URL from the research (must end in .jpg, .jpeg, .png, or .webp). Look for AliExpress product images, supplier listing photos, or clean product shots from review sites. If no direct image URL was found in the research, return an empty string ""`,
+    `- trendTrigger: For each product, conduct a deep analysis of its real-world context. Identify the specific cultural, social, seasonal, or pop-culture event triggering the trend (for example: "Driven by the upcoming World Cup," "TikTok K-pop aesthetic trends," "Seasonal heatwaves," etc.). Explain this trigger in a professional, marketing-expert tone under the trendTrigger field.`,
     `- Output ONLY the JSON object. No markdown fences, no commentary.`,
     ``,
     `=== RESEARCH BRIEF ===`,
@@ -409,7 +414,7 @@ function sanitizeSourceLinks(data) {
 const HISTORY_PATH = path.resolve(__dirname, '../data/history.json');
 const CSV_PATH     = path.resolve(__dirname, '../data/archive.csv');
 
-const CSV_HEADERS = 'Date,Rank,Name,Niche,SourcePrice,RetailPrice,MarginPercent,MarginVal,TrendScore,SupplierHint,Tags,SourceLink,ImageUrl';
+const CSV_HEADERS = 'Date,Rank,Name,Niche,SourcePrice,RetailPrice,MarginPercent,MarginVal,TrendScore,SupplierHint,Tags,SourceLink,ImageUrl,TrendTrigger';
 
 /**
  * Wrap a single CSV field value: always quote strings, escape internal
@@ -500,6 +505,7 @@ function updateCsvArchive(products) {
       csvField((p.tags || []).join(', ')),
       csvField(p.sourceLink),
       csvField(p.imageUrl || ''),
+      csvField(p.trendTrigger || ''),
     ].join(',')
   );
   lines.push(...newRows);

@@ -2,10 +2,18 @@
  * src/archive.js
  *
  * Archive browser — reads history.json (bundled by Parcel at build time),
- * groups products by date descending, renders a searchable timeline.
+ * groups products by date, renders a scalable, searchable, and sortable timeline.
  */
 
 import historyData from '../data/history.json';
+
+// ─── State Management ─────────────────────────────────────────────────────────
+
+let currentQuery = '';
+let currentSort = 'date-desc';
+let visibleGroupsCount = 3; // Batch size: render 3 dates (15 products) at a time
+let groupedDates = []; // Active array of [date, products[]] after filter/sort
+let observer; // IntersectionObserver for infinite scroll
 
 // ─── DOM Helpers ──────────────────────────────────────────────────────────────
 
@@ -21,27 +29,13 @@ function escHtml(str) {
 
 /** '2026-07-09' → 'Wednesday, July 9, 2026' */
 function formatDateHeading(isoDate) {
-  // Parse as local date to avoid UTC off-by-one
   const [y, m, d] = isoDate.split('-').map(Number);
   return new Date(y, m - 1, d).toLocaleDateString('en-US', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
   });
 }
 
-// ─── Group by date (descending) ───────────────────────────────────────────────
-
-function groupByDate(entries) {
-  const map = new Map();
-  for (const entry of entries) {
-    const key = entry.date || 'Unknown';
-    if (!map.has(key)) map.set(key, []);
-    map.get(key).push(entry);
-  }
-  // Sort dates descending (newest first)
-  return new Map([...map.entries()].sort((a, b) => b[0].localeCompare(a[0])));
-}
-
-// ─── Margin helper ────────────────────────────────────────────────────────────
+// ─── Margin Helper ────────────────────────────────────────────────────────────
 
 function parseMarginNum(product) {
   const fromStr = parseFloat(product.margin);
@@ -52,7 +46,7 @@ function parseMarginNum(product) {
   return 0;
 }
 
-// ─── Compact Card Renderer ────────────────────────────────────────────────────
+// ─── Card Renderer ────────────────────────────────────────────────────────────
 
 function renderCompactCard(product, dateIndex, cardIndex) {
   const delay = (dateIndex * 50) + (cardIndex * 80);
@@ -87,10 +81,6 @@ function renderCompactCard(product, dateIndex, cardIndex) {
   card.className = 'product-card archive-card';
   card.style.animationDelay = `${delay}ms`;
   card.setAttribute('aria-label', `Rank ${product.rank}: ${product.name}`);
-  // Store searchable text for filtering
-  card.dataset.search = [
-    product.name, product.niche, ...(product.tags || []),
-  ].join(' ').toLowerCase();
 
   card.innerHTML = `
     <div class="card-image-wrap">
@@ -115,6 +105,14 @@ function renderCompactCard(product, dateIndex, cardIndex) {
         ${reason ? `<p class="card-reason">${escHtml(reason)}</p>` : ''}
         ${pricingHtml}
         <div class="card-tags">${tagsHtml}</div>
+        
+        <!-- Highlighted AI Trend Trigger Badge -->
+        ${product.trendTrigger ? `
+          <div class="card-trigger-block">
+            💡 <strong>AI Trend Trigger:</strong> ${escHtml(product.trendTrigger)}
+          </div>
+        ` : ''}
+        
         ${linkHtml}
       </div>
 
@@ -148,89 +146,161 @@ function renderCompactCard(product, dateIndex, cardIndex) {
   return card;
 }
 
-// ─── Timeline Renderer ────────────────────────────────────────────────────────
+// ─── Scalable Chunk Rendering ─────────────────────────────────────────────────
 
-/**
- * Renders the full timeline into #archive-timeline.
- * @param {Map<string, object[]>} grouped - Date → products map (descending)
- */
-function renderTimeline(grouped) {
+function renderTimelineBatch() {
   const timeline = $('archive-timeline');
-  timeline.innerHTML = '';
 
-  if (grouped.size === 0) {
+  // If resetting to first batch, clear timeline
+  if (visibleGroupsCount === 3) {
+    timeline.innerHTML = '';
+  } else {
+    // Remove previous loader sentinel
+    const oldSentinel = $('timeline-sentinel');
+    if (oldSentinel) oldSentinel.remove();
+  }
+
+  if (groupedDates.length === 0) {
     timeline.innerHTML = `
       <div class="empty-state">
-        <p>📭 No archived products yet.</p>
-        <p style="font-size:.85rem;margin-top:.5rem;opacity:.7">
-          Run <code>npm run analyze</code> to generate your first report.
-        </p>
+        <p>📭 No archived products match your filters.</p>
       </div>`;
     return;
   }
 
-  let dateIdx = 0;
-  for (const [date, products] of grouped) {
+  // Slice current batch of date groups
+  const batch = groupedDates.slice(visibleGroupsCount - 3, visibleGroupsCount);
+
+  batch.forEach(([date, products], batchIdx) => {
+    const dateIdx = (visibleGroupsCount - 3) + batchIdx;
+
     const section = document.createElement('section');
     section.className = 'timeline-section';
     section.dataset.date = date;
-
-    // Sort products by rank within each date
-    const sorted = [...products].sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99));
 
     const heading = document.createElement('div');
     heading.className = 'timeline-heading';
     heading.innerHTML = `
       <h2 class="timeline-date">${escHtml(formatDateHeading(date))}</h2>
-      <span class="timeline-count">${sorted.length} product${sorted.length !== 1 ? 's' : ''}</span>
+      <span class="timeline-count">${products.length} product${products.length !== 1 ? 's' : ''}</span>
     `;
     section.appendChild(heading);
 
     const grid = document.createElement('div');
     grid.className = 'archive-grid';
 
-    sorted.forEach((product, cardIdx) => {
+    products.forEach((product, cardIdx) => {
       grid.appendChild(renderCompactCard(product, dateIdx, cardIdx));
     });
 
     section.appendChild(grid);
     timeline.appendChild(section);
-    dateIdx++;
+  });
+
+  // Setup Observer for infinite loading if more groups exist
+  if (visibleGroupsCount < groupedDates.length) {
+    const sentinel = document.createElement('div');
+    sentinel.id = 'timeline-sentinel';
+    sentinel.style.height = '40px';
+    sentinel.style.display = 'flex';
+    sentinel.style.alignItems = 'center';
+    sentinel.style.justify = 'center';
+    sentinel.innerHTML = '<div class="spinner" style="width:24px;height:24px;margin:0"></div>';
+    timeline.appendChild(sentinel);
+
+    if (observer) observer.disconnect();
+    observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        visibleGroupsCount += 3;
+        renderTimelineBatch();
+      }
+    }, { rootMargin: '200px' });
+    observer.observe(sentinel);
   }
 }
 
-// ─── Live Search Filter ───────────────────────────────────────────────────────
+// ─── Filter & Sort Processing ─────────────────────────────────────────────────
 
-function applyFilter(query) {
-  const q = query.trim().toLowerCase();
-  const sections = document.querySelectorAll('.timeline-section');
-  let totalVisible = 0;
+function processAndRender() {
+  const q = currentQuery.trim().toLowerCase();
 
-  sections.forEach((section) => {
-    const cards = section.querySelectorAll('.archive-card');
-    let sectionVisible = 0;
-
-    cards.forEach((card) => {
-      const matches = !q || card.dataset.search.includes(q);
-      card.style.display = matches ? '' : 'none';
-      if (matches) sectionVisible++;
-    });
-
-    // Hide entire date section if none of its cards match
-    section.style.display = sectionVisible > 0 ? '' : 'none';
-    totalVisible += sectionVisible;
+  // 1. Filter flat entries array
+  const filtered = historyData.filter((p) => {
+    if (!q) return true;
+    const name = (p.name || '').toLowerCase();
+    const niche = (p.niche || '').toLowerCase();
+    const tags = (p.tags || []).join(' ').toLowerCase();
+    const date = (p.date || '').toLowerCase();
+    return name.includes(q) || niche.includes(q) || tags.includes(q) || date.includes(q);
   });
 
-  // Update result count badge
+  // Update count indicator
+  filteredCount = filtered.length;
   const countEl = $('search-count');
   if (countEl) {
-    countEl.textContent = q
-      ? `${totalVisible} result${totalVisible !== 1 ? 's' : ''}`
-      : '';
+    countEl.textContent = q ? `${filtered.length} result${filtered.length !== 1 ? 's' : ''}` : '';
   }
+
+  // 2. Group filtered entries by date
+  const groupsMap = new Map();
+  for (const p of filtered) {
+    const key = p.date || 'Unknown';
+    if (!groupsMap.has(key)) groupsMap.set(key, []);
+    groupsMap.get(key).push(p);
+  }
+
+  groupedDates = Array.from(groupsMap.entries());
+
+  // 3. Sort products within each date group
+  groupedDates.forEach(([date, products]) => {
+    products.sort((a, b) => {
+      if (currentSort === 'revenue-desc') {
+        return (b.marginVal ?? 0) - (a.marginVal ?? 0);
+      } else if (currentSort === 'margin-desc') {
+        return parseMarginNum(b) - parseMarginNum(a);
+      } else if (currentSort === 'price-desc') {
+        return (b.retailPrice ?? 0) - (a.retailPrice ?? 0);
+      } else if (currentSort === 'demand-desc') {
+        return (b.trendScore ?? 0) - (a.trendScore ?? 0);
+      } else {
+        // Default ranking sorting
+        return (a.rank ?? 99) - (b.rank ?? 99);
+      }
+    });
+  });
+
+  // 4. Sort the date groups themselves
+  groupedDates.sort((a, b) => {
+    const dateA = a[0];
+    const dateB = b[0];
+
+    if (currentSort === 'date-asc') {
+      return dateA.localeCompare(dateB);
+    } else if (currentSort === 'date-desc') {
+      return dateB.localeCompare(dateA);
+    } else {
+      // Sort dates by their top performing product's metric value
+      const getMaxMetric = (products) => {
+        return Math.max(...products.map(p => {
+          if (currentSort === 'revenue-desc') return p.marginVal ?? 0;
+          if (currentSort === 'margin-desc') return parseMarginNum(p);
+          if (currentSort === 'price-desc') return p.retailPrice ?? 0;
+          if (currentSort === 'demand-desc') return p.trendScore ?? 0;
+          return 0;
+        }));
+      };
+      return getMaxMetric(b[1]) - getMaxMetric(a[1]);
+    }
+  });
+
+  // Reset pagination to first batch and render
+  visibleGroupsCount = 3;
+  renderTimelineBatch();
 }
 
 // ─── Main Initializer ─────────────────────────────────────────────────────────
+
+let filteredCount = 0;
 
 function initArchive() {
   const timeline = $('archive-timeline');
@@ -249,15 +319,25 @@ function initArchive() {
       return;
     }
 
-    const grouped = groupByDate(entries);
-    renderTimeline(grouped);
+    processAndRender();
 
-    // Wire up live search
+    // Wire up search events
     const searchInput = $('archive-search');
     if (searchInput) {
-      searchInput.addEventListener('input', (e) => applyFilter(e.target.value));
-      // Focus search on load for power users
+      searchInput.addEventListener('input', (e) => {
+        currentQuery = e.target.value;
+        processAndRender();
+      });
       searchInput.focus();
+    }
+
+    // Wire up sort events
+    const sortSelect = $('archive-sort');
+    if (sortSelect) {
+      sortSelect.addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        processAndRender();
+      });
     }
 
   } catch (err) {

@@ -100,6 +100,14 @@ function renderCard(container, product, index) {
         ${reason ? `<p class="card-reason">${escHtml(reason)}</p>` : ''}
         ${pricingHtml}
         <div class="card-tags">${tagsHtml}</div>
+        
+        <!-- Highlighted AI Trend Trigger Badge -->
+        ${product.trendTrigger ? `
+          <div class="card-trigger-block">
+            💡 <strong>AI Trend Trigger:</strong> ${escHtml(product.trendTrigger)}
+          </div>
+        ` : ''}
+        
         ${linkHtml}
       </div>
 
