@@ -354,6 +354,10 @@ function isLinkReliable(url) {
   const trimmed = url.trim();
   if (!trimmed.startsWith('http://') && !trimmed.startsWith('https://')) return false;
 
+  // Reject specific item links or links that do not target wholesale search text
+  if (trimmed.includes('/item/')) return false;
+  if (!trimmed.includes('/wholesale?SearchText=')) return false;
+
   let parsed;
   try {
     parsed = new URL(trimmed);
