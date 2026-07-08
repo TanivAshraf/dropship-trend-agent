@@ -1,106 +1,106 @@
 {
-  "generatedAt": "2026-07-08T19:54:51.811Z",
+  "generatedAt": "2026-07-08T20:10:13.226Z",
   "country": "US",
   "products": [
     {
       "rank": 1,
-      "name": "Self-Cooling Pet Mat",
-      "niche": "Pet Comfort, Seasonal",
-      "sourcePrice": 9,
-      "retailPrice": 30,
-      "margin": "70%",
-      "marginVal": 21,
-      "trendScore": 75,
-      "supplierHint": "CJdropshipping/Zendrop — 7-15 days (US warehouse options)",
-      "reasonToSell": "This product solves a direct problem for pet owners in warm weather, aligning with the 'smart pet care' trend and offering high emotional value.",
+      "name": "Pet Grooming Glove",
+      "niche": "Pet Care/Grooming",
+      "sourcePrice": 1.5,
+      "retailPrice": 12,
+      "margin": "88%",
+      "marginVal": 10.5,
+      "trendScore": 92,
+      "supplierHint": "CJdropshipping — 8-15 days CJPacket Sensitive",
+      "reasonToSell": "This product transforms routine pet grooming into a soothing experience, generating viral social media content and robust sales due to its simplicity and novelty.",
       "tags": [
-        "pet comfort",
-        "cooling mat",
-        "summer pet",
-        "dog accessories",
-        "seasonal"
+        "pet grooming",
+        "pet care",
+        "deshedding",
+        "animal massage",
+        "tiktok viral"
       ],
-      "sourceLink": "https://www.aliexpress.us/item/3256805176767699.html"
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Pet%20Grooming%20Glove"
     },
     {
       "rank": 2,
-      "name": "VolumeLift™ Hair Styling Comb",
-      "niche": "Beauty, Haircare Tools",
-      "sourcePrice": 5,
-      "retailPrice": 25,
-      "margin": "80%",
-      "marginVal": 20,
-      "trendScore": 85,
-      "supplierHint": "CJdropshipping — 5-12 days (US warehouse options)",
-      "reasonToSell": "It solves the common problem of flat hair with high demand and low competition, making it perfect for engaging video content on social media.",
-      "tags": [
-        "hair styling",
-        "volume comb",
-        "beauty tool",
-        "haircare",
-        "tiktok viral"
-      ],
-      "sourceLink": "https://www.sellthetrend.com/trending-products/beauty-personal-care/volume-lift-styling-comb"
-    },
-    {
-      "rank": 3,
-      "name": "Portable Mini Projector",
-      "niche": "Electronics, Home Entertainment, Lifestyle Gadgets",
+      "name": "Portable USB-C Blender",
+      "niche": "Kitchen & Health/On-the-go Gadgets",
       "sourcePrice": 15,
       "retailPrice": 45,
       "margin": "67%",
       "marginVal": 30,
-      "trendScore": 90,
-      "supplierHint": "AliExpress/CJdropshipping — 10-20 days",
-      "reasonToSell": "This low-cost, high-value gadget has proven viral potential on TikTok, appealing to a broad market seeking portable home entertainment and aesthetic content.",
+      "trendScore": 80,
+      "supplierHint": "CJdropshipping — 8-18 days CJPacket Sensitive",
+      "reasonToSell": "This blender taps into strong health and wellness trends, offering convenient, on-the-go smoothie solutions that generate high social media engagement.",
       "tags": [
-        "mini projector",
-        "home cinema",
-        "tiktok viral",
-        "electronics",
-        "lifestyle gadget"
+        "portable blender",
+        "usb-c",
+        "health gadget",
+        "smoothie maker",
+        "on-the-go"
       ],
-      "sourceLink": "https://dropshipping.cjdropshipping.com/blog/best-tiktok-viral-products/"
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Portable%20USB-C%20Blender"
+    },
+    {
+      "rank": 3,
+      "name": "Rechargeable Hand Warmer & Power Bank",
+      "niche": "Winter Gadgets/Tech Accessories",
+      "sourcePrice": 12,
+      "retailPrice": 28,
+      "margin": "57%",
+      "marginVal": 16,
+      "trendScore": 65,
+      "supplierHint": "AliExpress — 1-2 weeks (some listings)",
+      "reasonToSell": "This 2-in-1 device offers dual functionality as a hand warmer and portable charger, making it a popular and practical 'lifesaver' during colder months and for outdoor activities.",
+      "tags": [
+        "hand warmer",
+        "power bank",
+        "winter gadget",
+        "outdoor tech",
+        "portable charger"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Rechargeable%20Hand%20Warmer%20%26%20Power%20Bank"
     },
     {
       "rank": 4,
-      "name": "Compression Packing Cubes",
-      "niche": "Travel Accessories, Organization",
-      "sourcePrice": 8,
-      "retailPrice": 25,
-      "margin": "68%",
-      "marginVal": 17,
+      "name": "LED Desk Lamp with Wireless Phone Charger",
+      "niche": "Home Office/Tech Gadgets",
+      "sourcePrice": 20,
+      "retailPrice": 40,
+      "margin": "50%",
+      "marginVal": 20,
       "trendScore": 70,
-      "supplierHint": "AliExpress/CJdropshipping — 10-20 days",
-      "reasonToSell": "These practical cubes solve a clear problem for travelers by maximizing luggage space and organizing belongings, tapping into strong summer travel demand.",
+      "supplierHint": "AliExpress — 2-3 weeks (standard)",
+      "reasonToSell": "This multi-functional LED desk lamp with integrated wireless charging appeals to the growing demand for minimalist home office setups by reducing desk clutter and offering modern design.",
       "tags": [
-        "travel organization",
-        "packing cubes",
-        "luggage accessories",
-        "summer travel",
-        "space saver"
+        "desk lamp",
+        "wireless charger",
+        "home office",
+        "tech gadget",
+        "minimalist desk"
       ],
-      "sourceLink": "https://dropshipping.cjdropshipping.com/blog/july-2026-trending-products/"
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=LED%20Desk%20Lamp%20with%20Wireless%20Phone%20Charger"
     },
     {
       "rank": 5,
-      "name": "Silicone Facial Ice Mold & Massager",
-      "niche": "Beauty, Skincare Tools, Self-Care",
-      "sourcePrice": 5,
-      "retailPrice": 18,
-      "margin": "72%",
-      "marginVal": 13,
-      "trendScore": 80,
-      "supplierHint": "CJdropshipping/AliExpress — 10-20 days",
-      "reasonToSell": "This product taps into the viral at-home beauty trend, offering visible skincare benefits and high visual appeal for social media content.",
+      "name": "Mini Portable Thermal Printer",
+      "niche": "Tech Gadgets/Stationery & DIY",
+      "sourcePrice": 16,
+      "retailPrice": 29.99,
+      "margin": "47%",
+      "marginVal": 13.99,
+      "trendScore": 75,
+      "supplierHint": "CJdropshipping — 8-15 days CJPacket Sensitive",
+      "reasonToSell": "These compact printers are popular for their convenience in printing personalized photos, notes, and labels anywhere, aligning with strong DIY and aesthetic content trends on social media.",
       "tags": [
-        "facial ice",
-        "skincare tool",
-        "beauty gadget",
-        "self-care",
-        "anti-puffiness"
+        "thermal printer",
+        "mini printer",
+        "portable printer",
+        "diy",
+        "stationery tech"
       ],
-      "sourceLink": "https://tradelle.io/blog/viral-dropshipping-products-2026/"
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Mini%20Portable%20Thermal%20Printer"
     }
   ],
   "note": "Auto-generated by scripts/analyze.js. Do not edit manually."
