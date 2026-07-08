@@ -273,28 +273,50 @@ function buildFallbackLink(productName) {
 
 /**
  * Decide whether a given URL is safe to keep as-is.
- * Returns false (needs fallback) when the link is:
- *   - Missing / empty
- *   - Not a real HTTP(S) URL
- *   - A bare placeholder like "https://www.aliexpress.com/wholesale?SearchText="
- *     with no actual search term (i.e. the Gemini parser already guessed a fallback
- *     but left the name blank)
- *   - An AliExpress item URL (contains /item/) — these are kept as-is; they are real
- *     deep links and preferred over the search fallback
+ *
+ * STRICT MODE — only AliExpress URLs are trusted.
+ * Returns true only when ALL of the following are satisfied:
+ *   1. The URL is a non-empty string beginning with http:// or https://
+ *   2. The hostname is exactly aliexpress.com, www.aliexpress.com,
+ *      aliexpress.us, or www.aliexpress.us  (no other domains allowed)
+ *   3. It is not a bare root path with no path/query content
+ *   4. If it is a wholesale search URL, the SearchText param is non-empty
+ *
+ * Any URL from cjdropshipping.com, sellthetrend.com, tradelle.io, TikTok,
+ * blogs, or any other domain is automatically rejected and replaced with
+ * a clean AliExpress wholesale search URL built from the product name.
  */
+const ALIEXPRESS_HOSTS = new Set([
+  'aliexpress.com',
+  'www.aliexpress.com',
+  'aliexpress.us',
+  'www.aliexpress.us',
+]);
+
 function isLinkReliable(url) {
   if (!url || typeof url !== 'string') return false;
   const trimmed = url.trim();
   if (!trimmed.startsWith('http://') && !trimmed.startsWith('https://')) return false;
-  // Reject empty wholesale search with no query term
-  if (/\/wholesale\?SearchText=\s*$/.test(trimmed)) return false;
-  // Reject bare domain with no path/query
+
+  let parsed;
   try {
-    const parsed = new URL(trimmed);
-    if (parsed.pathname === '/' && !parsed.search) return false;
+    parsed = new URL(trimmed);
   } catch {
     return false; // Malformed URL
   }
+
+  // ── Domain whitelist — only AliExpress allowed ────────────────────────────
+  if (!ALIEXPRESS_HOSTS.has(parsed.hostname)) return false;
+
+  // ── Reject bare domain root ───────────────────────────────────────────────
+  if (parsed.pathname === '/' && !parsed.search) return false;
+
+  // ── Reject empty wholesale SearchText param ───────────────────────────────
+  if (parsed.pathname.includes('/wholesale')) {
+    const searchText = (parsed.searchParams.get('SearchText') || '').trim();
+    if (!searchText) return false;
+  }
+
   return true;
 }
 
