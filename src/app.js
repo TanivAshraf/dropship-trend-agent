@@ -77,16 +77,11 @@ function renderCard(container, product, index) {
   card.style.animationDelay = `${delay}ms`;
   card.setAttribute('aria-label', `Rank ${product.rank}: ${product.name}`);
 
+  const displayImg = (product.imageUrl && product.imageUrl.trim()) ? product.imageUrl : 'https://loremflickr.com/600/400/' + encodeURIComponent(product.name);
+
   card.innerHTML = `
     <div class="card-image-wrap">
-      <img
-        class="card-image"
-        src="${escHtml(product.imageUrl || '')}"
-        alt="${escHtml(product.name)}"
-        loading="lazy"
-        onload="this.classList.add('loaded')"
-        onerror="this.onerror=null; this.src='https://images.unsplash.com/featured/600x400/?' + encodeURIComponent(this.alt);"
-      />
+      <img class='card-image' src='${displayImg}' alt='${product.name}' loading='lazy' onload='this.classList.add("loaded")' onerror='this.onerror=null; this.src="https://loremflickr.com/600/400/" + encodeURIComponent(this.alt);'>
     </div>
 
     <div class="card-content">
