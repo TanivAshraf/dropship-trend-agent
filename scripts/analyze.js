@@ -59,6 +59,52 @@ const COUNTRY_META = {
 const meta = COUNTRY_META[COUNTRY] || { name: COUNTRY, currency: 'USD', marketplaces: 'major retail platforms' };
 
 // ─────────────────────────────────────────────────────────────────────────────
+//  RETRY HELPER — Exponential backoff for transient Gemini API errors
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Error codes / message fragments that indicate a transient server-side issue
+// and are safe to retry.  Anything else is a logic/auth error — fail fast.
+const TRANSIENT_PATTERNS = ['503', '429', 'UNAVAILABLE', 'RESOURCE_EXHAUSTED'];
+
+/**
+ * Calls ai.models.generateContent(options) with automatic retry on transient
+ * Gemini API errors (rate-limits, service unavailability).
+ *
+ * @param {object} options      - Options object passed directly to generateContent
+ * @param {number} maxRetries   - Maximum number of retry attempts (default 3)
+ * @returns {Promise<object>}   - The successful GenerateContentResponse
+ * @throws                      - Re-throws after maxRetries or on non-transient errors
+ */
+async function generateContentWithRetry(options, maxRetries = 3) {
+  let attempt = 0;
+
+  while (true) {
+    try {
+      return await ai.models.generateContent(options);
+    } catch (err) {
+      const message = (err.message || '').toUpperCase();
+      const isTransient = TRANSIENT_PATTERNS.some((p) => message.includes(p));
+
+      // Non-transient error — fail immediately, no point retrying
+      if (!isTransient) throw err;
+
+      attempt++;
+      if (attempt > maxRetries) {
+        console.error(`❌  [Retry] Exceeded ${maxRetries} retries. Last error: ${err.message}`);
+        throw err;
+      }
+
+      const delayMs = Math.pow(2, attempt) * 1000; // 2s, 4s, 8s
+      console.warn(
+        `⚠️   [Retry] Transient error on attempt ${attempt}/${maxRetries}: ${err.message.slice(0, 80)}`
+      );
+      console.warn(`     Waiting ${delayMs / 1000}s before retrying...`);
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 //  PHASE 1 — THE RESEARCHER
 //  Google Search Grounding ON. Returns free-text research with real URLs.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -92,7 +138,7 @@ async function runResearcher() {
     `Include real prices, real URLs, and specific reasoning for every product.`,
   ].join('\n');
 
-  const response = await ai.models.generateContent({
+  const response = await generateContentWithRetry({
     model: MODEL,
     contents: prompt,
     config: {
@@ -229,7 +275,7 @@ async function runParser(researchText) {
     researchText,
   ].join('\n');
 
-  const response = await ai.models.generateContent({
+  const response = await generateContentWithRetry({
     model: MODEL,
     contents: parserPrompt,
     config: {
