@@ -1,116 +1,116 @@
 {
-  "generatedAt": "2026-07-08T21:01:38.876Z",
+  "generatedAt": "2026-07-09T09:40:43.256Z",
   "country": "US",
   "products": [
     {
       "rank": 1,
-      "name": "\"Hello Hydration\" Mist Water Bottle",
-      "niche": "Hydration & Summer Gadgets",
+      "name": "2-in-1 Double-Sided Silicone Face Brush",
+      "niche": "Beauty & Personal Care / Skincare Tool",
+      "sourcePrice": 1.5,
+      "retailPrice": 14.99,
+      "margin": "90%",
+      "marginVal": 13.49,
+      "trendScore": 95,
+      "supplierHint": "AliExpress or CJdropshipping — 8-15 days ePacket or AliExpress Standard Shipping",
+      "reasonToSell": "This product is highly viral on TikTok, offering effective skincare with eco-friendly appeal and strong visual demonstration for social media.",
+      "tags": [
+        "silicone brush",
+        "face cleanser",
+        "skincare tool",
+        "eco-friendly",
+        "tiktok viral"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=2-in-1%20Double-Sided%20Silicone%20Face%20Brush",
+      "imageUrl": "",
+      "trendTrigger": "The 2-in-1 Double-Sided Silicone Face Brush is experiencing a significant viral surge on TikTok, driven by satisfying demonstration clips that highlight its deep cleansing and gentle exfoliation capabilities. This trend aligns with a broader consumer shift towards effective, visually appealing, and eco-friendly skincare tools, with popular hashtags like #siliconefacebrush and #skincarehacks fueling its widespread social media engagement."
+    },
+    {
+      "rank": 2,
+      "name": "Smart Vibration Posture Corrector",
+      "niche": "Health & Wellness / Ergonomics",
+      "sourcePrice": 10,
+      "retailPrice": 39.99,
+      "margin": "75%",
+      "marginVal": 29.99,
+      "trendScore": 80,
+      "supplierHint": "AliExpress or CJdropshipping — 10-20 days Standard shipping",
+      "reasonToSell": "Addressing widespread back pain from remote work, this smart posture corrector offers an 'Instagram-friendly' solution with strong before/after content potential.",
+      "tags": [
+        "posture corrector",
+        "ergonomics",
+        "back pain relief",
+        "smart device",
+        "remote work"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Smart%20Vibration%20Posture%20Corrector",
+      "imageUrl": "",
+      "trendTrigger": "The Smart Vibration Posture Corrector is trending due to the continued prevalence of remote work, which has exacerbated issues of poor posture and back pain. Consumers are actively seeking effective ergonomic solutions, and this product's innovative vibration feature, coupled with its 'Instagram-friendly' aesthetic, makes it highly appealing for social media 'before/after' content, driving its popularity as a modern health and wellness solution."
+    },
+    {
+      "rank": 3,
+      "name": "Pressure-Activated Self-Cooling Pet Mat",
+      "niche": "Pet Supplies / Pet Comfort / Summer Pet Products",
+      "sourcePrice": 10,
+      "retailPrice": 29.99,
+      "margin": "67%",
+      "marginVal": 19.99,
+      "trendScore": 70,
+      "supplierHint": "AliExpress or CJdropshipping — 10-20 days Standard shipping",
+      "reasonToSell": "A seasonal hit for summer 2026, this self-cooling pet mat offers emotional value by ensuring pet comfort during warm weather, making it a pet niche staple.",
+      "tags": [
+        "pet mat",
+        "cooling mat",
+        "summer pet",
+        "pet comfort",
+        "dog accessories"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Pressure-Activated%20Self-Cooling%20Pet%20Mat",
+      "imageUrl": "",
+      "trendTrigger": "The Pressure-Activated Self-Cooling Pet Mat is experiencing a strong seasonal trend for summer 2026. As temperatures rise, pet owners are actively seeking solutions to keep their animals comfortable and safe from overheating. This product directly addresses that immediate need, generating significant seasonal retail and social advertising attention, solidifying its status as a crucial summer pet product."
+    },
+    {
+      "rank": 4,
+      "name": "Reusable Silicone Air Fryer Liners",
+      "niche": "Home & Kitchen / Kitchen Gadgets / Eco-friendly",
+      "sourcePrice": 5,
+      "retailPrice": 18.99,
+      "margin": "74%",
+      "marginVal": 13.99,
+      "trendScore": 65,
+      "supplierHint": "AliExpress or CJdropshipping — 10-20 days Standard shipping",
+      "reasonToSell": "These eco-friendly silicone air fryer liners solve a common problem, offering easy cleaning and generating consistent revenue with simple ad angles.",
+      "tags": [
+        "air fryer",
+        "silicone liner",
+        "kitchen gadget",
+        "eco-friendly",
+        "cooking accessory"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Reusable%20Silicone%20Air%20Fryer%20Liners",
+      "imageUrl": "",
+      "trendTrigger": "Reusable Silicone Air Fryer Liners are trending due to the sustained popularity of air fryers and a growing consumer demand for practical, easy-to-clean, and eco-friendly kitchen solutions. This product directly addresses the common pain point of messy air fryer baskets, offering a simple yet effective solution that appeals to environmentally conscious consumers and those seeking kitchen convenience, leading to consistent sales and repeat purchases."
+    },
+    {
+      "rank": 5,
+      "name": "2-in-1 Hydration and Mist Spray Water Bottle",
+      "niche": "Sports & Outdoors / Hydration / Summer Gadget",
       "sourcePrice": 6,
       "retailPrice": 19.99,
       "margin": "70%",
       "marginVal": 13.99,
       "trendScore": 90,
-      "supplierHint": "AliExpress — 10-20 days ePacket",
-      "reasonToSell": "This dual-function mist water bottle is going viral on TikTok, offering a refreshing solution for summer heat with high-profit margins.",
+      "supplierHint": "AliExpress or CJdropshipping — 10-20 days Standard shipping",
+      "reasonToSell": "This 2-in-1 hydration and mist spray water bottle is experiencing insane viral momentum on TikTok, making it a perfect summer product to test.",
       "tags": [
-        "mist bottle",
+        "water bottle",
+        "mist spray",
         "hydration",
         "summer gadget",
-        "tiktok viral",
-        "cooling"
+        "sports bottle"
       ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=%22Hello%20Hydration%22%20Mist%20Water%20Bottle",
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=2-in-1%20Hydration%20and%20Mist%20Spray%20Water%20Bottle",
       "imageUrl": "",
-      "trendTrigger": "This product's viral trend is directly driven by the peak summer season, where consumers actively seek refreshing and convenient hydration solutions. Its dual functionality (drinking and misting) makes it highly shareable on TikTok, with user-generated content showcasing its practical and fun aspects, leading to rapid impulse purchases."
-    },
-    {
-      "rank": 2,
-      "name": "Breezel Bedside Mattress Cooling Fan",
-      "niche": "Home Comfort & Sleep Tech",
-      "sourcePrice": 10,
-      "retailPrice": 49.99,
-      "margin": "80%",
-      "marginVal": 39.99,
-      "trendScore": 95,
-      "supplierHint": "AliExpress or CJdropshipping — 10-20 days standard shipping",
-      "reasonToSell": "The Breezel cooling fan is a novel, viral product solving the common problem of hot summer nights, offering exceptional profit margins.",
-      "tags": [
-        "bed cooling",
-        "sleep tech",
-        "summer comfort",
-        "viral product",
-        "home gadget"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Breezel%20Bedside%20Mattress%20Cooling%20Fan",
-      "imageUrl": "",
-      "trendTrigger": "The Breezel Bedside Mattress Cooling Fan is experiencing a rapid viral surge due to its innovative solution to a universal summer problem: overheating during sleep. Its novelty and effectiveness in providing targeted cooling for mattresses make it highly shareable on social media, quickly attracting a large following and driving impulse buys as temperatures rise."
-    },
-    {
-      "rank": 3,
-      "name": "Dancing Daisy Sprinkler",
-      "niche": "Pet & Garden Accessories",
-      "sourcePrice": 8,
-      "retailPrice": 24.99,
-      "margin": "68%",
-      "marginVal": 16.99,
-      "trendScore": 85,
-      "supplierHint": "AliExpress — 10-20 days standard shipping",
-      "reasonToSell": "This charming sprinkler generates highly shareable content, especially with pets, making it an easy-to-market impulse buy for summer fun.",
-      "tags": [
-        "pet toy",
-        "garden sprinkler",
-        "summer fun",
-        "dog accessory",
-        "outdoor play"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Dancing%20Daisy%20Sprinkler",
-      "imageUrl": "",
-      "trendTrigger": "The Dancing Daisy Sprinkler's trend is fueled by the summer season and the evergreen popularity of pet-related content on social media. Videos featuring dogs playfully interacting with the sprinkler are inherently cute and highly shareable, creating a strong emotional connection with pet owners and driving impulse purchases for outdoor entertainment."
-    },
-    {
-      "rank": 4,
-      "name": "Portable Travel Door Lock",
-      "niche": "Travel & Safety Gadgets",
-      "sourcePrice": 3.5,
-      "retailPrice": 14.99,
-      "margin": "77%",
-      "marginVal": 11.49,
-      "trendScore": 70,
-      "supplierHint": "AliExpress — 10-20 days ePacket",
-      "reasonToSell": "Capitalize on ongoing summer travel by offering a practical, high-margin safety solution that appeals to security-conscious travelers.",
-      "tags": [
-        "travel safety",
-        "door lock",
-        "security gadget",
-        "portable",
-        "summer travel"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Portable%20Travel%20Door%20Lock",
-      "imageUrl": "",
-      "trendTrigger": "This product is trending due to the sustained high volume of summer travel, particularly towards the end of July. As more people embark on vacations, concerns about personal safety and security in unfamiliar accommodations rise, making this portable door lock a timely and practical solution that appeals to a broad audience seeking peace of mind."
-    },
-    {
-      "rank": 5,
-      "name": "LED Galaxy Star Projector",
-      "niche": "Home Decor & Ambiance Lighting",
-      "sourcePrice": 12,
-      "retailPrice": 29.99,
-      "margin": "60%",
-      "marginVal": 17.99,
-      "trendScore": 75,
-      "supplierHint": "AliExpress — 10-20 days standard shipping",
-      "reasonToSell": "Maintain sales with this visually appealing product, driven by ongoing \"bedroom glow-up\" trends and the approaching back-to-school/dorm season.",
-      "tags": [
-        "galaxy projector",
-        "LED light",
-        "home decor",
-        "ambiance lighting",
-        "dorm room"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=LED%20Galaxy%20Star%20Projector",
-      "imageUrl": "",
-      "trendTrigger": "The LED Galaxy Projector maintains its strong trend momentum, evolving from a Q1 viral hit to a consistent seller, primarily driven by the enduring \"bedroom glow-up\" aesthetic on social media platforms like TikTok and Instagram Reels. Its visually striking effects generate significant user-generated content, and its relevance is further boosted by the approaching back-to-school and dorm room decoration season, appealing to students looking to personalize their spaces."
+      "trendTrigger": "The 2-in-1 Hydration and Mist Spray Water Bottle is experiencing significant viral momentum, primarily driven by TikTok. Recent content, including a YouTube video from July 1, 2026, highlights brands achieving 'thousands of views' and 'insanely viral' status within a month of posting. This trend is fueled by its innovative combination of hydration and cooling mist, making it an ideal and highly shareable summer gadget for outdoor activities and hot weather."
     }
   ],
   "note": "Auto-generated by scripts/analyze.js. Do not edit manually."
