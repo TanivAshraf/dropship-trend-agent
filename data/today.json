@@ -1,116 +1,116 @@
 {
-  "generatedAt": "2026-09-01T10:58:14.099Z",
+  "generatedAt": "2026-09-02T10:26:47.128Z",
   "country": "US",
   "products": [
     {
       "rank": 1,
-      "name": "LED Sunset Lamp Projector",
-      "niche": "Home Decor, Aesthetic Lighting, Social Media Content Creation",
+      "name": "Portable Mechanical Keyboard Switch Fidget Keychain",
+      "niche": "Fidget Toy/Gadget Niche",
+      "sourcePrice": 4.5,
+      "retailPrice": 14.99,
+      "margin": "70%",
+      "marginVal": 10.49,
+      "trendScore": 90,
+      "supplierHint": "AliExpress/CJdropshipping — 7-15 days ePacket/CJPacket",
+      "reasonToSell": "Appeals to Gen Z, offers stress relief and entertainment, with proven social proof on platforms like Etsy.",
+      "tags": [
+        "fidget toy",
+        "keyboard gadget",
+        "stress relief",
+        "gen z",
+        "desk accessory"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Portable%20Mechanical%20Keyboard%20Switch%20Fidget%20Keychain",
+      "imageUrl": "",
+      "trendTrigger": "Driven by Gen Z's constant search for engaging, portable stress-relief tools and desk accessories, this fidget keychain has gained viral traction on social media platforms, with its satisfying click mechanics appealing to a digital-native audience."
+    },
+    {
+      "rank": 2,
+      "name": "Essential Oil Aromatherapy Diffuser Necklace",
+      "niche": "Personal Wellness/Jewelry Niche",
+      "sourcePrice": 3.5,
+      "retailPrice": 19.99,
+      "margin": "82%",
+      "marginVal": 16.49,
+      "trendScore": 85,
+      "supplierHint": "AliExpress/CJdropshipping — 12-25 days standard",
+      "reasonToSell": "Offers a personalized and stylish way to enjoy essential oils, tapping into the growing wellness and self-care market.",
+      "tags": [
+        "aromatherapy",
+        "essential oil",
+        "wellness jewelry",
+        "scent locket",
+        "self-care"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Essential%20Oil%20Aromatherapy%20Diffuser%20Necklace",
+      "imageUrl": "",
+      "trendTrigger": "Capitalizing on the enduring trend of personal wellness and self-care, this diffuser necklace appeals to consumers seeking discreet, portable aromatherapy. Its popularity is sustained by a desire for emotional comfort and personalized scent experiences, often shared and promoted within wellness communities online."
+    },
+    {
+      "rank": 3,
+      "name": "Dual-Sided Silicone Facial Cleansing Brush",
+      "niche": "Beauty/Skincare Niche",
+      "sourcePrice": 2,
+      "retailPrice": 15,
+      "margin": "87%",
+      "marginVal": 13,
+      "trendScore": 80,
+      "supplierHint": "AliExpress/CJdropshipping — 10-20 days standard",
+      "reasonToSell": "High demand in the skincare market, perfect for visual demonstrations on social media, and offers a gentle yet effective cleansing solution.",
+      "tags": [
+        "skincare",
+        "facial cleansing",
+        "silicone brush",
+        "beauty tool",
+        "exfoliation"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Dual-Sided%20Silicone%20Facial%20Cleansing%20Brush",
+      "imageUrl": "",
+      "trendTrigger": "This product's trend is fueled by the booming skincare industry and the visual nature of platforms like TikTok, where users seek and share effective beauty routines. Its dual-sided design and gentle silicone appeal to consumers looking for accessible, high-performance cleansing tools that can be easily demonstrated and reviewed online."
+    },
+    {
+      "rank": 4,
+      "name": "Reusable Magnetic Eyelashes with Magnetic Eyeliner & Applicator Kit",
+      "niche": "Beauty/Makeup Niche",
       "sourcePrice": 6,
       "retailPrice": 24.99,
       "margin": "76%",
       "marginVal": 18.99,
-      "trendScore": 92,
-      "supplierHint": "AliExpress — 15-30 days; CJdropshipping — 7-12 days",
-      "reasonToSell": "It taps into the enduring demand for aesthetic home decor and social media content creation, driven by its viral appeal and ability to transform spaces.",
+      "trendScore": 95,
+      "supplierHint": "CJdropshipping — 10-20 days standard (US/EU warehouse options for faster shipping)",
+      "reasonToSell": "Offers a convenient, glue-free alternative to traditional false lashes, driven by viral TikTok trends and a desire for easy beauty solutions.",
       "tags": [
-        "sunset lamp",
-        "LED projector",
-        "aesthetic decor",
-        "TikTok viral",
-        "mood lighting"
+        "magnetic lashes",
+        "eyeliner kit",
+        "false eyelashes",
+        "makeup",
+        "beauty hack"
       ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=LED%20Sunset%20Lamp%20Projector",
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Reusable%20Magnetic%20Eyelashes%20with%20Magnetic%20Eyeliner%20%26%20Applicator%20Kit",
       "imageUrl": "",
-      "trendTrigger": "The LED Sunset Lamp Projector's trend is directly fueled by its immense virality on TikTok and Instagram, where influencers and users consistently feature it to create aesthetically pleasing backdrops for their content, aligning with the broader 'aesthetic home' and 'cozy core' social media trends."
+      "trendTrigger": "This product is a prime example of a beauty trend ignited and sustained by TikTok virality. Its appeal lies in offering a convenient, glue-free alternative to traditional false lashes, resonating with users seeking quick and effective makeup solutions that are easily demonstrated and shared across social media."
     },
     {
-      "rank": 2,
-      "name": "Portable USB Rechargeable Blender Bottle",
-      "niche": "Health & Wellness, Kitchen Gadgets, On-the-Go Convenience",
+      "rank": 5,
+      "name": "USB Rechargeable Portable Mini Blender",
+      "niche": "Kitchen/Fitness Gadget Niche",
       "sourcePrice": 14,
       "retailPrice": 34.99,
       "margin": "60%",
       "marginVal": 20.99,
-      "trendScore": 75,
-      "supplierHint": "CJdropshipping — 5-11 days CJPacket Super Pure Electricity; AliExpress — 15-30 days Standard Shipping",
-      "reasonToSell": "This product solves the common problem of preparing fresh, healthy drinks on the go, appealing to health-conscious consumers seeking convenience.",
+      "trendScore": 88,
+      "supplierHint": "CJdropshipping — 4-11 days (CJPacket/YunExpress)",
+      "reasonToSell": "Caters to the on-the-go lifestyle, offering convenience for fitness enthusiasts and busy individuals, with strong visual appeal for social media.",
       "tags": [
         "portable blender",
-        "smoothie maker",
-        "USB rechargeable",
-        "health gadget",
-        "fitness"
+        "mini juicer",
+        "fitness gadget",
+        "kitchen appliance",
+        "on-the-go"
       ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Portable%20USB%20Rechargeable%20Blender%20Bottle",
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=USB%20Rechargeable%20Portable%20Mini%20Blender",
       "imageUrl": "",
-      "trendTrigger": "The Portable USB Rechargeable Blender Bottle is trending due to the sustained global focus on health and wellness, coupled with the demand for convenience. Its popularity is amplified by fitness influencers on TikTok showcasing its utility for quick, healthy meal prep and smoothies, aligning with the 'on-the-go' lifestyle trend."
-    },
-    {
-      "rank": 3,
-      "name": "Reusable Pet Hair Remover Roller",
-      "niche": "Pet Supplies, Home Cleaning, Practical Gadgets",
-      "sourcePrice": 8,
-      "retailPrice": 29.99,
-      "margin": "73%",
-      "marginVal": 21.99,
-      "trendScore": 80,
-      "supplierHint": "AliExpress — 15-30 days Standard Shipping; CJdropshipping — 7-12 days CJPacket (or 2-7 days US warehouse)",
-      "reasonToSell": "It's a highly practical, eco-friendly solution for pet owners, offering a satisfying and effective way to manage pet hair, often showcased in viral content.",
-      "tags": [
-        "pet hair remover",
-        "lint roller",
-        "pet supplies",
-        "home cleaning",
-        "eco-friendly"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Reusable%20Pet%20Hair%20Remover%20Roller",
-      "imageUrl": "",
-      "trendTrigger": "The Reusable Pet Hair Remover Roller's consistent trend is driven by the universal challenge of pet hair for owners, combined with a growing consumer preference for sustainable and cost-effective cleaning solutions. Its effectiveness is frequently highlighted in satisfying 'clean with me' and 'pet hack' videos on TikTok, boosting its viral appeal."
-    },
-    {
-      "rank": 4,
-      "name": "Magnetic Car Phone Mount (Dashboard/Vent)",
-      "niche": "Car Accessories, Tech Gadgets, Convenience",
-      "sourcePrice": 4,
-      "retailPrice": 19.99,
-      "margin": "80%",
-      "marginVal": 15.99,
-      "trendScore": 70,
-      "supplierHint": "AliExpress — 15-30 days Standard Shipping; CJdropshipping — 7-12 days CJPacket (or 2-7 days US warehouse)",
-      "reasonToSell": "This product offers a universal solution for hands-free phone access in cars, appealing to safety-conscious drivers and tech enthusiasts alike.",
-      "tags": [
-        "car accessory",
-        "phone mount",
-        "magnetic holder",
-        "hands-free driving",
-        "tech gadget"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Magnetic%20Car%20Phone%20Mount%20(Dashboard%2FVent)",
-      "imageUrl": "",
-      "trendTrigger": "The Magnetic Car Phone Mount remains a strong trend due to the pervasive need for safe, hands-free phone usage while driving, mandated by laws and personal convenience. Its relevance is continuously refreshed by new designs and viral demonstrations on platforms like TikTok and YouTube, showcasing innovative features and strong magnetic grip."
-    },
-    {
-      "rank": 5,
-      "name": "Portable Mini Thermal Printer",
-      "niche": "Office/School Supplies, Personalization, Productivity, Crafting",
-      "sourcePrice": 15,
-      "retailPrice": 39.99,
-      "margin": "62%",
-      "marginVal": 24.99,
-      "trendScore": 82,
-      "supplierHint": "AliExpress — 15-30 days Standard Shipping; CJdropshipping — 7-12 days CJPacket (or 2-7 days US warehouse)",
-      "reasonToSell": "It caters to the growing demand for instant personalization and organization, making it a versatile tool for students, crafters, and productivity enthusiasts.",
-      "tags": [
-        "mini printer",
-        "thermal printer",
-        "label maker",
-        "journaling",
-        "crafting"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Portable%20Mini%20Thermal%20Printer",
-      "imageUrl": "",
-      "trendTrigger": "The Portable Mini Thermal Printer is trending significantly due to its strong appeal within the journaling, scrapbooking, and organizational communities on TikTok and Instagram. Its ability to provide instant, personalized labels and notes aligns perfectly with the DIY and aesthetic content trends popular among students and hobbyists."
+      "trendTrigger": "The portable mini blender's popularity is driven by the modern demand for convenience and health-conscious living, particularly among fitness enthusiasts and busy professionals. Its 'viral gadget' status on platforms like TikTok is due to its aesthetic appeal and practical utility for on-the-go smoothie and shake preparation, making it highly shareable."
     }
   ],
   "note": "Auto-generated by scripts/analyze.js. Do not edit manually."
