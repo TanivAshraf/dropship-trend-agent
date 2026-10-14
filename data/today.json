@@ -1,116 +1,116 @@
 {
-  "generatedAt": "2026-10-13T13:23:18.216Z",
+  "generatedAt": "2026-10-14T11:02:06.387Z",
   "country": "US",
   "products": [
     {
       "rank": 1,
-      "name": "Smart LED Strip Lights with App Control",
-      "niche": "Home Decor / Smart Home / Gaming Aesthetics",
+      "name": "Portable Mini Thermal Printer",
+      "niche": "Personal Gadgets & Productivity, Home & Office Supplies, Journaling/Scrapbooking",
+      "sourcePrice": 12,
+      "retailPrice": 39.99,
+      "margin": "70%",
+      "marginVal": 27.99,
+      "trendScore": 90,
+      "supplierHint": "AliExpress or CJdropshipping — 7-15 days ePacket or standard shipping",
+      "reasonToSell": "This versatile gadget is an impulse buy for students and creatives, driven by viral social media content showcasing its practical and aesthetic uses.",
+      "tags": [
+        "Mini Printer",
+        "Thermal Printer",
+        "Journaling",
+        "Study Hacks",
+        "Portable Gadget"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Portable%20Mini%20Thermal%20Printer",
+      "imageUrl": "",
+      "trendTrigger": "The product's trend is primarily driven by its virality on TikTok and Instagram Reels, where content creators effectively demonstrate its diverse applications for organization, crafting, and quick note-taking, leveraging popular hashtags like #thermalprinter and #studyhacks to reach millions of engaged users."
+    },
+    {
+      "rank": 2,
+      "name": "Crystal Hair Removal Eraser",
+      "niche": "Personal Care & Beauty, Hair Removal",
+      "sourcePrice": 4,
+      "retailPrice": 19.99,
+      "margin": "80%",
+      "marginVal": 15.99,
+      "trendScore": 88,
+      "supplierHint": "AliExpress and CJdropshipping — 8-18 days standard shipping",
+      "reasonToSell": "Its viral appeal on social media, combined with claims of painless hair removal and exfoliation, makes it a high-margin, impulse-buy beauty product.",
+      "tags": [
+        "Hair Removal",
+        "Exfoliation",
+        "Beauty Tool",
+        "Painless",
+        "Skincare"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Crystal%20Hair%20Removal%20Eraser",
+      "imageUrl": "",
+      "trendTrigger": "This product's sustained trend is fueled by its consistent virality on TikTok and Instagram Reels, where users actively share compelling before-and-after demonstrations and testimonials highlighting its 'painless' hair removal and exfoliating benefits, resonating with a broad audience seeking convenient beauty solutions."
+    },
+    {
+      "rank": 3,
+      "name": "Portable USB Rechargeable Blender",
+      "niche": "Health & Fitness, Kitchen Gadgets, On-the-Go Lifestyle",
+      "sourcePrice": 14,
+      "retailPrice": 34.99,
+      "margin": "60%",
+      "marginVal": 20.99,
+      "trendScore": 75,
+      "supplierHint": "CJdropshipping or AliExpress — 7-20 days shipping",
+      "reasonToSell": "Capitalize on the evergreen health and fitness trend with a convenient, portable solution for smoothies and shakes, appealing to busy, health-conscious consumers.",
+      "tags": [
+        "Portable Blender",
+        "Smoothie Maker",
+        "Health Gadget",
+        "Fitness",
+        "USB Rechargeable"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Portable%20USB%20Rechargeable%20Blender",
+      "imageUrl": "",
+      "trendTrigger": "The enduring popularity of portable blenders is driven by the sustained global focus on healthy living and convenience. Its trend is reinforced by social media content showcasing its utility for on-the-go nutrition, particularly among fitness enthusiasts and busy individuals seeking quick and easy ways to prepare protein shakes and smoothies."
+    },
+    {
+      "rank": 4,
+      "name": "Electric Spin Scrubber",
+      "niche": "Home & Kitchen Cleaning, Household Gadgets",
+      "sourcePrice": 20,
+      "retailPrice": 49.99,
+      "margin": "60%",
+      "marginVal": 29.99,
+      "trendScore": 85,
+      "supplierHint": "CJdropshipping and AliExpress — 10-20 days standard shipping",
+      "reasonToSell": "This product leverages the enduring 'CleanTok' trend, offering an effortless solution for deep cleaning that resonates with homeowners seeking efficiency and convenience.",
+      "tags": [
+        "Electric Scrubber",
+        "Cleaning Gadget",
+        "Home Cleaning",
+        "Bathroom Cleaner",
+        "Kitchen Cleaner"
+      ],
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Electric%20Spin%20Scrubber",
+      "imageUrl": "",
+      "trendTrigger": "The electric spin scrubber's consistent high performance is directly linked to the enduring 'CleanTok' phenomenon on TikTok and Reels. Viral videos demonstrating its superior effectiveness in tackling tough grime in bathrooms and kitchens, coupled with its promise of reduced effort, continue to drive significant consumer interest and purchasing decisions."
+    },
+    {
+      "rank": 5,
+      "name": "Sunset Projection Lamp",
+      "niche": "Home Decor, Ambient Lighting, Photography Props",
       "sourcePrice": 9,
       "retailPrice": 29.99,
       "margin": "70%",
       "marginVal": 20.99,
-      "trendScore": 90,
-      "supplierHint": "AliExpress — 7-15 days ePacket",
-      "reasonToSell": "These lights offer instant room transformations and aesthetic appeal, making them highly shareable and consistently viral on social media platforms.",
+      "trendScore": 65,
+      "supplierHint": "AliExpress — 10-20 days standard shipping",
+      "reasonToSell": "Tap into the persistent demand for aesthetic home decor and mood lighting, driven by social media trends that highlight its ability to create 'golden hour' vibes.",
       "tags": [
-        "LED Lights",
-        "Smart Home",
+        "Sunset Lamp",
         "Room Decor",
-        "Gaming Setup",
-        "TikTok Viral"
+        "Ambient Lighting",
+        "Aesthetic",
+        "Photography Prop"
       ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Smart%20LED%20Strip%20Lights%20with%20App%20Control",
+      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Sunset%20Projection%20Lamp",
       "imageUrl": "",
-      "trendTrigger": "The enduring popularity of Smart LED Strip Lights is directly fueled by the continuous trend of aesthetic room makeovers and personalized gaming setups on platforms like TikTok and Instagram Reels. Users actively seek visually appealing and easily customizable lighting solutions to enhance their living spaces, driving consistent viral content and high engagement for products that offer instant transformations."
-    },
-    {
-      "rank": 2,
-      "name": "Pet Self-Cleaning Grooming Brush",
-      "niche": "Pet Accessories / Pet Care",
-      "sourcePrice": 6,
-      "retailPrice": 19.99,
-      "margin": "70%",
-      "marginVal": 13.99,
-      "trendScore": 88,
-      "supplierHint": "AliExpress — 8-18 days",
-      "reasonToSell": "This brush solves a common pet owner problem with a satisfying self-cleaning mechanism, making it highly shareable and viral on social media.",
-      "tags": [
-        "Pet Grooming",
-        "Dog Brush",
-        "Cat Care",
-        "Pet Accessories",
-        "Self-Cleaning"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Pet%20Self-Cleaning%20Grooming%20Brush",
-      "imageUrl": "",
-      "trendTrigger": "The trend for the Pet Self-Cleaning Grooming Brush is driven by pet owners' constant search for convenient and effective solutions to common pet care challenges. Its 'self-cleaning' feature provides a highly satisfying and visually appealing demonstration for short-form video content on TikTok and Reels, tapping into the emotional investment pet owners have in their pets' well-being and the desire for hassle-free maintenance."
-    },
-    {
-      "rank": 3,
-      "name": "Smart Posture Corrector with Vibration Reminder",
-      "niche": "Health & Wellness / Ergonomics",
-      "sourcePrice": 14,
-      "retailPrice": 39.99,
-      "margin": "65%",
-      "marginVal": 25.99,
-      "trendScore": 75,
-      "supplierHint": "AliExpress — 7-15 days",
-      "reasonToSell": "Addressing the widespread issue of poor posture from increased screen time, this smart corrector offers a clear, demonstrable solution with a high perceived value.",
-      "tags": [
-        "Posture Correction",
-        "Health Tech",
-        "Ergonomics",
-        "WFH Solutions",
-        "Wellness"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Smart%20Posture%20Corrector%20with%20Vibration%20Reminder",
-      "imageUrl": "",
-      "trendTrigger": "The sustained demand for the Smart Posture Corrector is a direct consequence of the ongoing shift towards remote work and increased screen time, leading to widespread posture-related issues. This product capitalizes on the growing health and wellness trend, offering a technological solution that provides immediate feedback, making it highly appealing to individuals seeking ergonomic improvements and a healthier lifestyle."
-    },
-    {
-      "rank": 4,
-      "name": "Portable Mini Projector (4K Supported)",
-      "niche": "Electronics / Home Entertainment / Tech Gadgets",
-      "sourcePrice": 35,
-      "retailPrice": 89.99,
-      "margin": "61%",
-      "marginVal": 54.99,
-      "trendScore": 80,
-      "supplierHint": "AliExpress — 7-15 days",
-      "reasonToSell": "Offering an affordable and compact solution for home entertainment, this mini projector taps into the desire for versatile media consumption and tech gadgets.",
-      "tags": [
-        "Mini Projector",
-        "Home Theater",
-        "Tech Gadgets",
-        "Portable Electronics",
-        "Entertainment"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Portable%20Mini%20Projector%20(4K%20Supported)",
-      "imageUrl": "",
-      "trendTrigger": "The enduring popularity of Portable Mini Projectors is fueled by the increasing demand for flexible and affordable home entertainment solutions. This trend is amplified by social media content showcasing creative uses for outdoor movie nights, gaming setups, and dorm room essentials, positioning these projectors as versatile tech gadgets that enhance lifestyle experiences without a significant investment."
-    },
-    {
-      "rank": 5,
-      "name": "Multifunctional Kitchen Strainer Spoon (5-in-1, Grater, Masher, Drainer, Scraper, Spoon)",
-      "niche": "Kitchen Gadgets / Problem Solvers",
-      "sourcePrice": 5,
-      "retailPrice": 14.99,
-      "margin": "67%",
-      "marginVal": 9.99,
-      "trendScore": 85,
-      "supplierHint": "AliExpress — 8-20 days",
-      "reasonToSell": "This kitchen gadget simplifies multiple cooking tasks, appealing to the desire for efficiency and convenience, making it an impulse-buy viral product.",
-      "tags": [
-        "Kitchen Hacks",
-        "Cooking Tools",
-        "Gadgets",
-        "Problem Solver",
-        "Multifunctional"
-      ],
-      "sourceLink": "https://www.aliexpress.com/wholesale?SearchText=Multifunctional%20Kitchen%20Strainer%20Spoon%20(5-in-1%2C%20Grater%2C%20Masher%2C%20Drainer%2C%20Scraper%2C%20Spoon)",
-      "imageUrl": "",
-      "trendTrigger": "The viral success of the Multifunctional Kitchen Strainer Spoon is rooted in the universal desire for efficiency and convenience in daily cooking. This product perfectly aligns with the 'kitchen hacks' and 'problem-solving gadgets' trends prevalent on platforms like TikTok and Reels, where quick demonstration videos highlight its ability to simplify multiple tasks, generating strong impulse-buy interest and engagement."
+      "trendTrigger": "The sunset projection lamp's renewed popularity is sustained by its integral role in aesthetic-driven content on TikTok and Instagram Reels. It caters to a strong desire for creating 'Instagrammable' home environments and achieving 'golden hour' lighting effects, particularly appealing to younger demographics focused on interior design and visual content creation."
     }
   ],
   "note": "Auto-generated by scripts/analyze.js. Do not edit manually."
